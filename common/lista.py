@@ -7,7 +7,6 @@ __version__="0.1"
 __status__="Prototype"
 
 import colors
-import urllib2
 import re
 
 def tema(target):
