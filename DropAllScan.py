@@ -11,6 +11,7 @@ import common.lista as listar
 import common.session as session
 import argparse
 import colors
+import os
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description='Scanner de vulnerabilidades \
@@ -52,6 +53,4 @@ if __name__=="__main__":
       if 'https' not in arguments.d[0] and arguments.ssl:
         arguments.d[0]='https://'+arguments.d[0]
       version.version(req,arguments.d[0],arguments.verbose)
-      #if arguments.listar:
-       # listar.tema(req,arguments.d[0])
-        #listar.dir(arguments.d[0])
+      listar.tema(req,arguments.d[0],arguments.verbose)

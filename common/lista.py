@@ -6,31 +6,20 @@ __license__="GPL"
 __version__="0.1"
 __status__="Prototype"
 
-import colors
+import requests
 import re
+import colors
+import requesocks
+import untangle
+import hashlib
+import os
 
-def tema(target):
-	html = urllib2.urlopen(target).read()
+def tema(req, target, verbose=True):
+	html = req.get(target).text
 	regex = '"theme":"(\w+)"'
 	pattern =  re.compile(regex)
 	theme = re.findall(pattern,html)
 	if theme:
-		print colors.green('[*] ')+"Tema instalado: %s"%theme[0]
+		print colors.green('[*] ')+"Tema instalado: %s"%theme[0] if verbose else '',
 	else:
-		print colors.red('[*] ')+"No se pudo encontrar el tema especifico."
-
-def dir(target):
-	dirs = ['/includes/',
-	'/misc/',
-	'/modules/',
-	'/profiles/',
-	'/scripts/',
-	'/sites/',
-	'/includes/',
-	'/themes/']
-	for d in dirs:
-		try:
-			if urllib2.urlopen(target+d).getcode() is 200:
-				print colors.green('[*] ')+"Respuesta desde: %s"%(target+d)
-		except urllib2.URLError as e:
-			pass
+		print colors.red('[*] ')+"No se pudo encontrar el tema especifico." if verbose else '',
