@@ -12,8 +12,10 @@ import common.session as session
 import argparse
 import colors
 import os
+import time
 
 if __name__=="__main__":
+    tiempo = time.time()
     parser = argparse.ArgumentParser(description='Scanner de vulnerabilidades \
     para DRUPAL :D')
 
@@ -25,7 +27,6 @@ if __name__=="__main__":
     parser.add_argument('--tor',action="store_true",help="Emplea tor como proxy, con el fin de mantener el anonimato")
     parser.add_argument('--verbose','-v',action="store_true",help="Habilita el modo verboso")
 
-    
     verbose=False
     useragent=''
     arguments = parser.parse_args()
@@ -54,3 +55,7 @@ if __name__=="__main__":
         arguments.d[0]='https://'+arguments.d[0]
       version.version(req,arguments.d[0],arguments.verbose)
       listar.tema(req,arguments.d[0],arguments.verbose)
+      listar.mod_pagina(req,arguments.d[0],arguments.verbose)
+
+
+    print colors.green('\b\n[***] ')+"Ejecucion finalizada "+format(time.time() - tiempo)+" segundos transcurridos..."
