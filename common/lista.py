@@ -15,13 +15,16 @@ import hashlib
 import os
 
 def tema(req, target, verbose=False):
-	html = req.get(target).text
-	regex = '"theme":"(\w+)"'
-	pattern =  re.compile(regex)
-	theme = re.findall(pattern,html)
-	if theme:
-		print colors.green('[*] ')+"Tema instalado: %s\n"%theme[0] if verbose else '',
-	else:
+	try:
+		html = req.get(target).text
+		regex = '"theme":"(\w+)"'
+		pattern =  re.compile(regex)
+		theme = re.findall(pattern,html)
+		if theme:
+			print colors.green('[*] ')+"Tema instalado: %s\n"%theme[0] if verbose else '',
+		else:
+			print colors.red('[*] ')+"No se pudo encontrar el tema especifico." if verbose else '',
+	except:
 		print colors.red('[*] ')+"No se pudo encontrar el tema especifico." if verbose else '',
 
 def mod_pagina(req, target, verbose=False):
@@ -38,3 +41,35 @@ def mod_pagina(req, target, verbose=False):
 		print colors.green('[**] ')+"Modulos encontrados en pagina principal: "
 		for modulo in list(set(lista_mod)):
 			print colors.blue('[*] ')+"=> "+modulo
+
+	mod = ["%ssites/all/modules/%s/","%ssites/default/modules/%s/", "%s/modules/%s/"]
+	for modulo in list(set(lista_mod)):
+
+
+	
+
+def directorios(req, target, verbose=False):
+	dirs = ['/includes/',
+	'/misc/',
+	'/modules/',
+	'/profiles/',
+	'/scripts/',
+	'/sites/',
+	'/includes/',
+	'/themes/',
+	'/core/',
+	'user/login']
+	for d in dirs:
+		try:
+			if req.get(target+d).status_code == 403:
+				print "%s esta prohibido"%(target+d)
+			elif req.get(target+d).status_code == 300:
+				print "%s tiene redireccion"%(target+d)
+			elif req.get(target+d).status_code == 200:
+				print "%s esta abierto"%(target+d)
+			else:
+				print req.get(target+d).status_code
+		except:
+			print "No sirve"
+
+#def modulos(req, target, verbose=False):

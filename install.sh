@@ -6,3 +6,4 @@ sudo pip install requesocks
 sudo pip install requests[socks]
 sudo pip install ansicolors
 sudo pip install untangle
+sudo pip install BeautifulSoup

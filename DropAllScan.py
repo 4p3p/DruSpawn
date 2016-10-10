@@ -13,9 +13,11 @@ import argparse
 import colors
 import os
 import time
+import getpass
 
 if __name__=="__main__":
     tiempo = time.time()
+    log = open(os.getcwd()+'/config/.dropall_scan.log','a')
     parser = argparse.ArgumentParser(description='Scanner de vulnerabilidades \
     para DRUPAL :D')
 
@@ -31,6 +33,8 @@ if __name__=="__main__":
     useragent=''
     arguments = parser.parse_args()
     proxy = ''
+
+    log.write("Ejecucion en "+time.asctime(time.localtime(time.time()))+"\n Usuario: "+getpass.getuser()+'\n Argumentos: %s\n'%format(vars(arguments))+'-'*200+"\n")
 
     if arguments.verbose:
       verbose=True
@@ -56,6 +60,7 @@ if __name__=="__main__":
       version.version(req,arguments.d[0],arguments.verbose)
       listar.tema(req,arguments.d[0],arguments.verbose)
       listar.mod_pagina(req,arguments.d[0],arguments.verbose)
+      listar.directorios(req,arguments.d[0],arguments.verbose)
 
 
     print colors.green('\b\n[***] ')+"Ejecucion finalizada "+format(time.time() - tiempo)+" segundos transcurridos..."
