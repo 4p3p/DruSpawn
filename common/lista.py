@@ -42,10 +42,6 @@ def mod_pagina(req, target, verbose=False):
 		for modulo in list(set(lista_mod)):
 			print colors.blue('[*] ')+"=> "+modulo
 
-	mod = ["%ssites/all/modules/%s/","%ssites/default/modules/%s/", "%s/modules/%s/"]
-	for modulo in list(set(lista_mod)):
-
-
 	
 
 def directorios(req, target, verbose=False):
@@ -56,20 +52,19 @@ def directorios(req, target, verbose=False):
 	'/scripts/',
 	'/sites/',
 	'/includes/',
-	'/themes/',
-	'/core/',
-	'user/login']
+	'/themes/']
+	print colors.green('[***] ')+' Directorios:'
 	for d in dirs:
 		try:
 			if req.get(target+d).status_code == 403:
-				print "%s esta prohibido"%(target+d)
-			elif req.get(target+d).status_code == 300:
-				print "%s tiene redireccion"%(target+d)
+				print colors.blue('[*] ')+"=> Existe en servidor(no accesible) %s "%(target+d)
 			elif req.get(target+d).status_code == 200:
-				print "%s esta abierto"%(target+d)
+				print colors.yellow('[*] ')+"Existe en servidor(accesible) %s "%(target+d)
 			else:
 				print req.get(target+d).status_code
 		except:
 			print "No sirve"
 
+	if req.get(target+'/?q=user/login').status_code == 200:
+		print colors.green('\n[**] ')+"Ingreso de usuarios:\n\t %s/?q=user/login"%target
 #def modulos(req, target, verbose=False):
