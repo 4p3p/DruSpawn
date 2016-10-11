@@ -14,11 +14,11 @@ from BeautifulSoup import BeautifulSoup
 def diccionarios(tipo):
   if tipo == 1:
     f = open(os.getcwd()+"/../temas.dat",'w')
-    burl = "http://www.drupal.org/project/project_theme?page=%d"
+    burl = "https://www.drupal.org/project/project_theme?page=%d"
     resource = "themes"
   elif tipo == 2:
     f = open(os.getcwd()+"/../modulos.dat",'w')
-    burl = "http://www.drupal.org/project/project_module?page=%d"
+    burl = "https://www.drupal.org/project/project_module?page=%d"
     resource = "modules"
   i=0
   while True:
@@ -32,6 +32,7 @@ def diccionarios(tipo):
       for link in soup.findAll('a'):
         if link.parent.name == 'h2':
           if link.has_key('href') and not link.has_key('rel'):
+            print link['href']
             link = link["href"].split("/")
             if link[1] == "project":
               count = count + 1

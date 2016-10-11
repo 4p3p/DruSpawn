@@ -52,19 +52,25 @@ def directorios(req, target, verbose=False):
 	'/scripts/',
 	'/sites/',
 	'/includes/',
-	'/themes/']
-	print colors.green('[***] ')+' Directorios:'
+	'/themes/'] 
+	i = 0
+	print colors.green('\n[***] ')+' Directorios:\n' if verbose else '',
 	for d in dirs:
 		try:
 			if req.get(target+d).status_code == 403:
-				print colors.blue('[*] ')+"=> Existe en servidor(no accesible) %s "%(target+d)
+				i+=1
+				print colors.blue('[*] ')+"=> Existe en servidor(no accesible) %s \n"%(target+d) if verbose else '',
 			elif req.get(target+d).status_code == 200:
-				print colors.yellow('[*] ')+"Existe en servidor(accesible) %s "%(target+d)
-			else:
-				print req.get(target+d).status_code
+				i+=1
+				print colors.yellow('[*] ')+"Existe en servidor(accesible) %s \n"%(target+d) if verbose else '',
 		except:
-			print "No sirve"
+			print colors.red('[*] ')+"Algo salio mal, contacte al equipo de desarrollo"
+
+	if i == 0:
+		print colors.green('\t[*] ')+'Wow! no tiene directorios comunes de drupal expuestos o incluso indicios de su existencia!'
 
 	if req.get(target+'/?q=user/login').status_code == 200:
-		print colors.green('\n[**] ')+"Ingreso de usuarios:\n\t %s/?q=user/login"%target
+		print colors.green('\n[**] ')+"Pagina para ingreso de usuarios:\n\t %s/?q=user/login"%target if verbose else '',
+
 #def modulos(req, target, verbose=False):
+	#TERMINA DE MIGRAR A REQUESTS!!!!!!!!!!!!!!

@@ -1,2 +1,29 @@
-Requests:
+Requests (python):
 	http://docs.python-requests.org/en/master/
+
+Modulos:
+	https://www.drupal.org/node/2349369
+
+Proyectos similares:
+	http://www.whitefirdesign.com/resources/check-what-version-of-drupal-you-are-running.html
+	https://nmap.org/nsedoc/scripts/http-drupal-enum.html
+
+Drupal hardening e instalacion:
+	https://www.keycdn.com/blog/drupal-security/
+	http://es.slideshare.net/iztoksmolic/drupal2-15546254
+	https://chromatichq.com/blog/15-common-drupal-problems-that-make-you-scream-solutions-included
+
+CVSSv3:
+	https://www.first.org/_assets/downloads/cvss/cvss-v30-preview2-metricvectorstring-december-2014.pdf
+
+CVSs:
+	https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5385 
+
+Drupal security team:
+	https://www.drupal.org/security-team
+
+Drupal Rex Ransomware:
+	http://www.acunetix.com/blog/articles/drupal-ransomware-vulnerability-attacks-rex/
+	https://github.com/ytisf/theZoo/tree/master/malwares/Binaries/Ransomware.Rex
+	https://thisissecurity.net/2016/08/17/from-website-locker-to-ddos-rex/
+

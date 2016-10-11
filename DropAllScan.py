@@ -22,7 +22,9 @@ if __name__=="__main__":
     para DRUPAL :D')
 
     parser.add_argument('-d', required=True, nargs=1, help="Direccion de objetivo")
+    parser.add_argument('--full', action="store_true", help="Lista versiones de modulos, directorios expuestos y configuraciones de Drupal basado en diccionarios, tarda mas tiempo.")
     parser.add_argument('--listar', action="store_true", help="Lista directorios expuestos y configuraciones de Drupal.")
+    parser.add_argument('-m', required=True, nargs=1, help="Pasa como argumento un modulo propio, que aprovecha la conexion de la herramienta")
     parser.add_argument('-p', nargs=1,help="Emplea un proxy, con el fin de mantener el anonimato")
     parser.add_argument('-u', nargs=1, help="Se especifica un user-agent a traves de un archivo")
     parser.add_argument('--ssl',action="store_true",help="conexion cifrada")

@@ -44,6 +44,7 @@ def version_exacta67(req, target, version, verbose):
 		version_x = re.findall(pattern,texto)
 		if version_x:
 			print colors.green('[*] ')+"Version expecifica: %s"%version_x[0]
+			actualizado(req,version_x[0],verbose)
 			return
 		objetivo = target+"/CHANGELOG.txt"
 		texto = req.get(objetivo).text
@@ -52,13 +53,14 @@ def version_exacta67(req, target, version, verbose):
 		version_x = re.findall(pattern,texto)
 		if version_x:
 			print colors.green('[*] ')+"Version expecifica: %s"%version_x[0]
+			actualizado(req,version_x[0],verbose)
 			return True
 		if version == 7:
 			versiones_posibles(req,target,verbose)
 		elif version == 6:
 			return False
 	except:
-		print colors.red('[*] ')+"No se pudo obtener la version especifica"	
+		print colors.red('[*] ')+"No se pudo obtener la version especifica\n"	if verbose else '',
 
 
 def version_exacta8(req, target, version, verbose):
@@ -69,11 +71,12 @@ def version_exacta8(req, target, version, verbose):
 		pattern =  re.compile(regex)
 		version_x = re.findall(pattern,texto)
 		if version_x:
-			print colors.green('[*] ')+"Version expecifica: %s"%version_x[0]
+			print colors.green('[*] ')+"Version expecifica: %s"%version_x[0] if verbose else '',
+			actualizado(req,version_x[0],verbose)
 			return True
 		versiones_posibles(req)
 	except:
-			print colors.red('[*] ')+"No se pudo obtener la version especifica"
+			print colors.red('[*] ')+"No se pudo obtener la version especifica\n" if verbose else '',
 
 def versiones_posibles(req, target, verbose):
 	try:
@@ -106,4 +109,14 @@ def versiones_posibles(req, target, verbose):
 			for i in range(1,len(posibles)):
 				print colors.blue('[*] ')+"=> %s \n"%posibles[i] if verbose else '',		
 	except:
-		print colors.red('[*] ')+"No se pudo obtener la version especifica"
+		print colors.red('[*] ')+"No se pudo obtener la version especifica" if verbose else '',
+
+
+def actualizado(req,version,verbose):
+	regex = 'Drupal core "(\d+\.\d+)"'
+	pattern =  re.compile(regex)
+	recommended = re.findall(pattern,req.get('https://www.drupal.org/project/drupal').text)
+	if recommended:
+		print colors.green('[**] ')+"Este drupal se encuentra actualizado\n" if verbose else '',
+	else:
+		print colors.red('[**] ')+"Este sitio no se encuentra actualizado\n" if verbose else '',
