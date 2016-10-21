@@ -17,15 +17,19 @@ import sqlite3
 import datetime
 
 def create(target):
+	i=1
 	titulo = str(target.replace('http://','')+datetime.datetime.now().strftime("%a%d"))
 	ubicacion = os.getcwd()+"/../reportes/"+ titulo
 	if not os.path.exists(ubicacion):
 		os.makedirs(ubicacion)
 	reporte = open(ubicacion+'/'+titulo,'w')
 	reporte.write('<html>\n\t<head>\n\t</head>\n<body>')
+	return 
+
 
 create('google.com')
 
-#def append(target):
+def append(cadena):
+
 
 #def final()
