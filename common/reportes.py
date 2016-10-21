@@ -26,10 +26,7 @@ def create(target):
 	reporte.write('<html>\n\t<head>\n\t</head>\n<body>')
 	return 
 
-
-create('google.com')
-
 def append(cadena):
-
+	return
 
 #def final()
