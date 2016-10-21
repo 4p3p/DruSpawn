@@ -1,0 +1,4 @@
+becario
+admin
+user
+csirt

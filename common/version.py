@@ -71,7 +71,7 @@ def version_exacta8(req, target, version, verbose):
 		pattern =  re.compile(regex)
 		version_x = re.findall(pattern,texto)
 		if version_x:
-			print colors.green('[*] ')+"Version expecifica: %s"%version_x[0] if verbose else '',
+			print colors.green('[*] ')+"Version expecifica: %s\n"%version_x[0] if verbose else '',
 			actualizado(req,version_x[0],verbose)
 			return True
 		versiones_posibles(req)
@@ -93,9 +93,12 @@ def versiones_posibles(req, target, verbose):
 				print colors.green('\b[*] ')+"\"%s\" se trata de un Drupal 6 \n" %target if verbose else '',
 				v = version_exacta67(req,target,6, verbose)
 				if v is False:
-					print colors.blue('[***] ')+"Versiones posibles: \n" if verbose else '',
-					for i in range(1,len(posibles)):
-						print colors.blue('[*] ')+"=> %s \n"%posibles[i] if verbose else '',
+					if posibles:
+						print colors.blue('[***] ')+"Versiones posibles: \n" if verbose else '',
+						for i in range(1,len(posibles)):
+							print colors.blue('[*] ')+"=> %s \n"%posibles[i] if verbose else '',
+					else:
+						print colors.blue('[***] ')+"No se pudo obtener la version especifica \n" if verbose else '',
 				return
 			print colors.blue('[***] ')+"Versiones posibles: \n" if verbose else '',
 			for i in range(1,len(posibles)):
@@ -113,10 +116,13 @@ def versiones_posibles(req, target, verbose):
 
 
 def actualizado(req,version,verbose):
-	regex = 'Drupal core "(\d+\.\d+)"'
-	pattern =  re.compile(regex)
-	recommended = re.findall(pattern,req.get('https://www.drupal.org/project/drupal').text)
-	if recommended:
-		print colors.green('[**] ')+"Este drupal se encuentra actualizado\n" if verbose else '',
-	else:
-		print colors.red('[**] ')+"Este sitio no se encuentra actualizado\n" if verbose else '',
+	try:
+		regex = 'Drupal core "(\d+\.\d+)"'
+		pattern =  re.compile(regex)
+		recommended = re.findall(pattern,req.get('https://www.drupal.org/project/drupal').text)
+		if recommended:
+			print colors.green('[**] ')+"Este drupal se encuentra actualizado\n\n" if verbose else '',
+		else:
+			print colors.red('[**] ')+"Este sitio no se encuentra actualizado\n\n" if verbose else '',
+	except:
+		print colors.red('[++] ')+"No se puede definir si Drupal se encuentra actualizado" if verbose else '',
