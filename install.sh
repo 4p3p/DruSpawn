@@ -31,8 +31,8 @@ instalador () {
 	sudo cp -rf ./drustroyer /bin/
 	sudo chmod /bin/drustroyer
 	echo "CREANDO LA BASE DE DATOS, ESTO PUEDE TOMAR MUCHO TIEMPO, PUEDE IN POR UN CAFE :)"
-	#sudo sqlite3 drupal_vuln.db < drupal_vuln.sql
-	#sudo python fill_db.py
+	sudo sqlite3 drupal_vuln.db < drupal_vuln.sql
+	sudo python fill_db.py
 }
 
 if [ -d /opt/drustroyer ];

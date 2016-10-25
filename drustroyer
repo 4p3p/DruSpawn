@@ -10,4 +10,4 @@
 #	es un buen cliche...	#
 #***************************#
 
-sudo python /opt/drustoyer/DropAllScan.py $*
+python /opt/drustoyer/DropAllScan.py $*
