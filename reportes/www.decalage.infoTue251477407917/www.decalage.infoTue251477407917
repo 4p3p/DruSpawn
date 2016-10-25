@@ -1,0 +1,115 @@
+
+<html>
+<head>
+	<title>Reporte</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" href="dependencias/style.css" type="text/css" />
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<h1 id="logo-text">DrupalScan</h1>
+			<h2 id="slogan">Reporte de escaneo a https://www.decalage.info</h2>
+			<div id="header-links">
+				<p> <a href="https://www.drupal.org">DRUPAL</a> | <a href="https://seguridad.unam.mx">UNAM CERT</a> | <a href="#">FCG</a> </p>
+			</div>
+		</div>
+		<div id="content-wrap">
+			<div id="sidebar">
+				<h1>ARGUMENTOS</h1>
+				<ul class="sidemenu">
+		
+					<li><strong>-full: </strong>False</li>
+					<li><strong>-d: </strong>['https://www.decalage.info']</li>
+					<li><strong>-script: </strong>False</li>
+					<li><strong>-tor: </strong>False</li>
+					<li><strong>-p: </strong>None</li>
+					<li><strong>-s: </strong>None</li>
+					<li><strong>-u: </strong>['../falso.txt']</li>
+					<li><strong>-pdf: </strong>False</li>
+					<li><strong>-verbose: </strong>True</li>
+				</ul>
+			</div>	
+			<div id="main">
+				<h1>INFORMACION GENERAL</h1>
+				<strong>OBJETIVO: </strong><a href="https://www.decalage.info">https://www.decalage.info</a><br/>
+				<strong>INICIO DE ESCANEO: </strong>Tue Oct 25 10:05:16 2016<br/>
+				<strong>USUARIO: </strong>fernando<br/>
+				<strong>IP: </strong>187.223.212.183<br/>
+				<strong>USER-AGENT: </strong>DRUSTROYER USER-AGENT :D. HELLO FROM THE 6TH UNIVERSE...<br/>
+			</div>
+		
+			<div id="main">
+				<h1>INFORMACION DE LA VERSION</h1>
+			
+				Se encontro el archivo drupal.js en <a href='https://www.decalage.info/misc/drupal.js'>https://www.decalage.info/misc/drupal.js</a><br/>
+				
+				"https://www.decalage.info" se trata de un Drupal 6<br/>
+				
+				Version expecifica: 6.30<br/>
+				
+				La ultima version de Drupal 6 es la 6.38, la cual no es mantenida desde el <strong>24 de febrero de 2016</strong>
+				
+			</div>
+				
+					<table>
+					<tr>
+						<th class="first"><strong>ID</strong> vulnerabilidad</th>
+						<th>Fecha</th>
+						<th>Nivel</th>
+						<th>Tipo</th>
+						<th>CVEs</th>
+					</tr>
+				
+					<tr class="row-a">
+						<td class="first"><a href='https://www.drupal.org/SA-CORE-2015-002'>DRUPAL-SA-CORE-2015-002</a></td>
+						<td>2015-June-17</td>
+						<td>15/25 ( Critical) AC:Basic/A:None/CI:Some/II:Some/E:Theoretical/TD:Default</td>
+						<td>Access bypass, Information Disclosure, Open Redirect, Multiple vulnerabilities</td>
+						<td><strong><a href='CVE-2015-3234>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3234</a></strong>, <strong><a href='CVE-2015-6665>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-6665</a></strong>, <strong><a href='CVE-2015-2559>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2559</a></strong>, <strong><a href='CVE-2014-9015>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-9015</a></strong>, <strong><a href='CVE-2014-5265>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-5265</a></strong>, </td>
+					</tr>
+					
+					<tr class="row-a">
+						<td class="first"><a href='https://www.drupal.org/SA-CORE-2015-003'>DRUPAL-SA-CORE-2015-003</a></td>
+						<td>2015-August-19</td>
+						<td>18/25 ( Critical) AC:Complex/A:User/CI:All/II:All/E:Proof/TD:All</td>
+						<td>Cross Site Scripting, Access bypass, SQL Injection, Open Redirect, Multiple vulnerabilities</td>
+						<td><strong><a href='CVE-2015-3234>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3234</a></strong>, <strong><a href='CVE-2015-6665>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-6665</a></strong>, <strong><a href='CVE-2015-2559>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2559</a></strong>, <strong><a href='CVE-2014-9015>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-9015</a></strong>, <strong><a href='CVE-2014-5265>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-5265</a></strong>, </td>
+					</tr>
+					
+					<tr class="row-a">
+						<td class="first"><a href='https://www.drupal.org/SA-CORE-2015-001'>DRUPAL-SA-CORE-2015-001</a></td>
+						<td>2015-March-18 </td>
+						<td>14/25 ( Moderately Critical) AC:Complex/A:None/CI:Some/II:Some/E:Theoretical/TD:Default</td>
+						<td>Access bypass, Open Redirect, Multiple vulnerabilities</td>
+						<td><strong><a href='CVE-2015-3234>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3234</a></strong>, <strong><a href='CVE-2015-6665>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-6665</a></strong>, <strong><a href='CVE-2015-2559>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2559</a></strong>, <strong><a href='CVE-2014-9015>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-9015</a></strong>, <strong><a href='CVE-2014-5265>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-5265</a></strong>, </td>
+					</tr>
+					
+					<tr class="row-a">
+						<td class="first"><a href='https://www.drupal.org/SA-CORE-2014-006'>DRUPAL-SA-CORE-2014-006</a></td>
+						<td>2014-November-19</td>
+						<td>14/25 ( Moderately Critical) AC:Basic/A:None/CI:Some/II:Some/E:Theoretical/TD:Uncommon</td>
+						<td>Multiple vulnerabilities</td>
+						<td><strong><a href='CVE-2015-3234>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3234</a></strong>, <strong><a href='CVE-2015-6665>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-6665</a></strong>, <strong><a href='CVE-2015-2559>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2559</a></strong>, <strong><a href='CVE-2014-9015>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-9015</a></strong>, <strong><a href='CVE-2014-5265>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-5265</a></strong>, </td>
+					</tr>
+					
+					<tr class="row-a">
+						<td class="first"><a href='https://www.drupal.org/SA-CORE-2014-004'>DRUPAL-SA-CORE-2014-004</a></td>
+						<td>2014-August-06</td>
+						<td>13/25 ( Moderately Critical</td>
+						<td>Denial of service</td>
+						<td><strong><a href='CVE-2015-3234>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3234</a></strong>, <strong><a href='CVE-2015-6665>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-6665</a></strong>, <strong><a href='CVE-2015-2559>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2559</a></strong>, <strong><a href='CVE-2014-9015>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-9015</a></strong>, <strong><a href='CVE-2014-5265>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-5265</a></strong>, </td>
+					</tr>
+					
+					</tr>
+		      </table>
+		
+		<br />
+		</div>
+		<div id="footer">
+			<p> &copy; 2016 <strong>UNAM CERT</strong></p>
+		</div>
+	</div>	
+</body>
+</html>
+		

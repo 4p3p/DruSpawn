@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#***************************#
+#	DRUSTROYER INSTALLER	#
+#							#
+#	Fernando C.G.			#
+#							#
+#	Este cuadro no dice		#
+#	nada importante, pero	#
+#	es un buen cliche...	#
+#***************************#
+
+sudo python /opt/drustoyer/DropAllScan.py $*

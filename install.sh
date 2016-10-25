@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 #***************************#
 #	DRUSTROYER INSTALLER	#
@@ -10,7 +10,7 @@
 #	es un buen cliche...	#
 #***************************#
 
-function instalador(){
+instalador () {
 	sudo pip install requests 
 	sudo pip install requesocks
 	sudo pip install requests[socks]
@@ -18,16 +18,21 @@ function instalador(){
 	sudo pip install untangle
 	sudo pip install BeautifulSoup 
 	sudo pip install bs4
+	sudo chmod 777 ./*
 	echo "CREANDO DIRECTORIO /opt/drustoyer"
 	sudo mkdir -pm 755 /opt/drustroyer
 	echo "CREANDO DIRECTORIO PARA USUARIO..."
 	sudo mkdir -pm 711 ~/.drustroyer
+	sudo mkdir -pm 711 ~/.drustroyer/logs
+	sudo mkdir -pm 711 ~/.drustroyer/reportes
 	echo "Moviendo archivos necesarios a /opt/drustroyer"
-	sudo cp ./* /opt/drustroyer
+	sudo cp -rf ./* /opt/drustroyer
 	cd /opt/drustroyer/config/generadores
+	sudo cp -rf ./drustroyer /bin/
+	sudo chmod /bin/drustroyer
 	echo "CREANDO LA BASE DE DATOS, ESTO PUEDE TOMAR MUCHO TIEMPO, PUEDE IN POR UN CAFE :)"
-	sudo sqlite3 drupal_vuln.db < drupal_vuln.sql
-	sudo python fill_db.py
+	#sudo sqlite3 drupal_vuln.db < drupal_vuln.sql
+	#sudo python fill_db.py
 }
 
 if [ -d /opt/drustroyer ];
@@ -43,16 +48,16 @@ else
 	then
 		if [ $(lsb_release -a|grep precise|wc -l) ];
 		then
-			deb http://deb.torproject.org/torproject.org precise main
-			deb-src http://deb.torproject.org/torproject.org precise main
+			sudo deb http://deb.torproject.org/torproject.org precise main
+			sudo deb-src http://deb.torproject.org/torproject.org precise main
 		elif [ $(lsb_release -a|grep trusty|wc -l) ];
 		then 
-			deb http://deb.torproject.org/torproject.org trusty main
-			deb-src http://deb.torproject.org/torproject.org trusty main
+			sudo deb http://deb.torproject.org/torproject.org trusty main
+			sudo deb-src http://deb.torproject.org/torproject.org trusty main
 		elif [ $(lsb_release -a|grep trusty|wc -l) ]; 
 		then
-			deb http://deb.torproject.org/torproject.org xenial main
-			deb-src http://deb.torproject.org/torproject.org xenial main
+			sudo deb http://deb.torproject.org/torproject.org xenial main
+			sudo deb-src http://deb.torproject.org/torproject.org xenial main
 		else 
 			echo "No se puede instar TOR en este equipo..."
 		fi
