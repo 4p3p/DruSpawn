@@ -20,15 +20,14 @@ import getpass
 def create(target,tiempo,usuario,args,ip,user_agent):
 	i=1
 	pwd = os.getcwd()
-	'/home/'+getpass.getuser()+'/.drustruyer/logs/exec.log'
 	if 'https' in target:
 		titulo = str(target.replace('https://','').replace('/','')+datetime.datetime.now().strftime("%a%d%s"))
 	else:
 		titulo = str(target.replace('http://','').replace('/','')+datetime.datetime.now().strftime("%a%d%s"))
-	ubicacion = '/home/'+getpass.getuser()+'/.drustruyer/reportes/'+ titulo
+	ubicacion = '/home/'+getpass.getuser()+'/.drustroyer/reportes/'+ titulo
 	if not os.path.exists(ubicacion):
 		os.makedirs(ubicacion)
-	os.system('sudo cp -rf /opt/drustroyer/reportes/dependencias/ ''/home/'+getpass.getuser()+'/.drustruyer/reportes/'+titulo+'/')
+	os.system('sudo cp -rf /opt/drustroyer/reportes/dependencias/ ''/home/'+getpass.getuser()+'/.drustroyer/reportes/'+titulo+'/')
 	reporte = open(ubicacion+'/'+titulo,'a')
 	reporte.write('''
 <html>
@@ -100,7 +99,6 @@ def listado(reporte,lista):
 				''')
 
 def vuln(reporte,listalista):
-	print listalista
 	reporte.write('''
 				<div id="main">
 					<h1>VULNERABILIDADES POSIBLES PARA SECCION.</h1>

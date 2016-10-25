@@ -20,16 +20,16 @@ instalador () {
 	sudo pip install bs4
 	sudo chmod 777 ./*
 	echo "CREANDO DIRECTORIO /opt/drustoyer"
-	sudo mkdir -pm 755 /opt/drustroyer
+	sudo mkdir -pm 777 /opt/drustroyer
 	echo "CREANDO DIRECTORIO PARA USUARIO..."
-	sudo mkdir -pm 711 ~/.drustroyer
-	sudo mkdir -pm 711 ~/.drustroyer/logs
-	sudo mkdir -pm 711 ~/.drustroyer/reportes
+	sudo mkdir -pm 777 ~/.drustroyer
+	sudo mkdir -pm 777 ~/.drustroyer/logs
+	sudo mkdir -pm 777 ~/.drustroyer/reportes
 	echo "Moviendo archivos necesarios a /opt/drustroyer"
 	sudo cp -rf ./* /opt/drustroyer
+	sudo cp ./drustroyer /bin/
+	sudo chmod 777 /bin/drustroyer
 	cd /opt/drustroyer/config/generadores
-	sudo cp -rf ./drustroyer /bin/
-	sudo chmod /bin/drustroyer
 	echo "CREANDO LA BASE DE DATOS, ESTO PUEDE TOMAR MUCHO TIEMPO, PUEDE IN POR UN CAFE :)"
 	sudo sqlite3 drupal_vuln.db < drupal_vuln.sql
 	sudo python fill_db.py
