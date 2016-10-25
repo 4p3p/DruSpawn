@@ -66,7 +66,9 @@ if __name__=="__main__":
         if arguments.s:
           script = "/opt/drustroyer/script/"
           sys.argv = [script+arguments.s[0], req, arguments.d[0]]
-          execfile(script+arguments.s[0])
+          retorno = dict()
+          execfile(script+arguments.s[0], dict(), retorno)
+          report.script(arguments.s[0],retorno["retorno"],reporte)       
     elif arguments.script and arguments.d:
       if arguments.s:
         reporte = report.create(arguments.d[0],time.asctime(time.localtime(time.time())),getpass.getuser(),vars(arguments),req.get('http://ipecho.net/plain').text,useragent[:-1])
