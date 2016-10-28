@@ -33,7 +33,7 @@ def create(target,tiempo,usuario,args,ip,user_agent):
 	if 'root' in getpass.getuser():
 		os.system('sudo cp -rf /opt/drustroyer/reportes/dependencias/ /'+getpass.getuser()+'/.drustroyer/reportes/'+titulo+'/')
 	else
-		os.system('sudo cp -rf /opt/drustroyer/reportes/dependencias/ /home/'+getpass.getuser()+'/.drustroyer/reportes/'+titulo+'/')	
+		os.system('sudo cp -rf /opt/drustroyer/reportes/dependencias/ /home/'+getpass.getuser()+'/.drustroyer/reportes/'+titulo+'/')
 	reporte = open(ubicacion+'/'+titulo,'a')
 	reporte.write('''
 <html>

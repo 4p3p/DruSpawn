@@ -30,7 +30,7 @@ instalador () {
 	cd /opt/drustroyer/config/generadores
 	echo "¿Desea utilizar la base de datos que viene con el programa, o desea crear una propia?[ Ingrese S para crearla, cualquier otro caracter para utilizar la base de datos por defecto. ]"
 	read valor
-	if [ $valor -eq "S" ];
+	if [ "$valor" -eq "S" ];
 	then
 		cd /opt/drustroyer/config/generadores
 		rm -rf drupal_vuln.db
@@ -39,6 +39,7 @@ instalador () {
 		sudo python fill_db.py
 	else
 		cd /opt/drustroyer/config/generadores
+	fi
 }
 
 if [ -d /opt/drustroyer ];
