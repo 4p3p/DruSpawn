@@ -26,7 +26,7 @@ def create(target,tiempo,usuario,args,ip,user_agent):
 		titulo = str(target.replace('http://','').replace('/','')+datetime.datetime.now().strftime("%a%d%s"))
 	if 'root' in getpass.getuser():
 		ubicacion = '/'+getpass.getuser()+'/.drustroyer/reportes/'+ titulo
-	else
+	else:
 		ubicacion = '/home/'+getpass.getuser()+'/.drustroyer/reportes/'+ titulo
 	if not os.path.exists(ubicacion):
 		os.makedirs(ubicacion)
