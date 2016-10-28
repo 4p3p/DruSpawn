@@ -30,7 +30,7 @@ instalador () {
 	cd /opt/drustroyer/config/generadores
 	echo "¿Desea utilizar la base de datos que viene con el programa, o desea crear una propia?[ Ingrese S para crearla, cualquier otro caracter para utilizar la base de datos por defecto. ]"
 	read valor
-	if [ "$valor" -eq "S" ];
+	if [ $(grep '[Ss]' $valor|wc -l) ];
 	then
 		cd /opt/drustroyer/config/generadores
 		rm -rf drupal_vuln.db
