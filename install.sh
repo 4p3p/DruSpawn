@@ -30,9 +30,17 @@ instalador () {
 	sudo cp ./drustroyer /bin/
 	sudo chmod 777 /bin/drustroyer
 	cd /opt/drustroyer/config/generadores
-	echo "CREANDO LA BASE DE DATOS, ESTO PUEDE TOMAR MUCHO TIEMPO, PUEDE IN POR UN CAFE :)"
-	sudo sqlite3 drupal_vuln.db < drupal_vuln.sql
-	sudo python fill_db.py
+	echo "¿Desea utilizar la base de datos que viene con el programa, o desea crear una propia?[ Ingrese S para crearla, cualquier otro caracter para utilizar la base de datos por defecto. ]"
+	read valor
+	if [ $valor -eq "S" ];
+	then
+		cd /opt/drustroyer/config/generadores
+		rm -rf drupal_vuln.db
+		echo "CREANDO LA BASE DE DATOS, ESTO PUEDE TOMAR MUCHO TIEMPO, PUEDE IN POR UN CAFE :)"
+		sudo sqlite3 drupal_vuln.db < drupal_vuln.sql
+		sudo python fill_db.py
+	else
+		cd /opt/drustroyer/config/generadores
 }
 
 if [ -d /opt/drustroyer ];
