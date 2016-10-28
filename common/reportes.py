@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 __author__="Fernando Castaneda G."
 __copyright__="Copyright 2016, UNAM-CERT"
-__license__="GPL"
-__version__="0.1"
+__license__="UNAM CERT"
+__version__="1.0"
 __status__="Prototype"
 
 import requests
@@ -25,15 +25,15 @@ def create(target,tiempo,usuario,args,ip,user_agent):
 	else:
 		titulo = str(target.replace('http://','').replace('/','')+datetime.datetime.now().strftime("%a%d%s"))
 	if 'root' in getpass.getuser():
-		ubicacion = '/'+getpass.getuser()+'/.drustroyer/reportes/'+ titulo
+		ubicacion = '/'+getpass.getuser()+'/.druspawn/reportes/'+ titulo
 	else:
-		ubicacion = '/home/'+getpass.getuser()+'/.drustroyer/reportes/'+ titulo
+		ubicacion = '/home/'+getpass.getuser()+'/.druspawn/reportes/'+ titulo
 	if not os.path.exists(ubicacion):
 		os.makedirs(ubicacion)
 	if 'root' in getpass.getuser():
-		os.system('sudo cp -rf /opt/drustroyer/reportes/dependencias/ /'+getpass.getuser()+'/.drustroyer/reportes/'+titulo+'/')
+		os.system('sudo cp -rf /opt/druspawn/reportes/dependencias/ /'+getpass.getuser()+'/.druspawn/reportes/'+titulo+'/')
 	else:
-		os.system('sudo cp -rf /opt/drustroyer/reportes/dependencias/ /home/'+getpass.getuser()+'/.drustroyer/reportes/'+titulo+'/')
+		os.system('sudo cp -rf /opt/druspawn/reportes/dependencias/ /home/'+getpass.getuser()+'/.druspawn/reportes/'+titulo+'/')
 	reporte = open(ubicacion+'/'+titulo,'a')
 	reporte.write('''
 <html>
@@ -45,7 +45,7 @@ def create(target,tiempo,usuario,args,ip,user_agent):
 <body>
 	<div id="wrap">
 		<div id="header">
-			<h1 id="logo-text">DrupalScan</h1>
+			<h1 id="logo-text">DruSpawn</h1>
 			<h2 id="slogan">Reporte de escaneo a %s</h2>
 			<div id="header-links">
 				<p> <a href="https://www.drupal.org">DRUPAL</a> | <a href="https://seguridad.unam.mx">UNAM CERT</a> | <a href="#">FCG</a> </p>

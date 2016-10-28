@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 __author__="Fernando Castaneda G."
 __copyright__="Copyright 2016, UNAM-CERT"
-__license__="GPL"
-__version__="0.1"
+__license__="UNAM CERT"
+__version__="1.0"
 __status__="Prototype"
 
 import requests
@@ -187,7 +187,7 @@ def actualizado(req,version,verbose, reporte, archivo):
 def vulnerabilidad(version, archivo,reporte, verbose):
 	try:
 		vulnes = []
-		c = sqlite3.connect('/opt/drustroyer/config/generadores/drupal_vuln.db')
+		c = sqlite3.connect('/opt/druspawn/config/generadores/drupal_vuln.db')
 		con = c.cursor()
 		respuesta = con.execute('Select v.id_vuln,v.id_proyecto,v.solucion from vulnerabilidades as v,core as c where v.id_proyecto like "%core"').fetchall()
 		vulns = []

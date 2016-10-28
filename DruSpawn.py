@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 __author__="Fernando Castaneda G."
 __copyright__="Copyright 2016, UNAM-CERT"
-__license__="GPL"
-__version__="0.1"
+__license__="UNAM CERT"
+__version__="1.0"
 __status__="Prototype"
 
 import common.version as version
@@ -20,9 +20,9 @@ import subprocess
 if __name__=="__main__":
     tiempo = time.time()
     if 'root' in getpass.getuser():
-      log = open('/'+getpass.getuser()+'/.drustroyer/logs/exec.log','a')
+      log = open('/'+getpass.getuser()+'/.druspawn/logs/exec.log','a')
     else:
-      log = open('/home/'+getpass.getuser()+'/.drustroyer/logs/exec.log','a')
+      log = open('/home/'+getpass.getuser()+'/.druspawn/logs/exec.log','a')
     parser = argparse.ArgumentParser(description='Scanner para DRUPAL, funciona con las versiones 6, 7 y 8 del CMS favorito del mundo ;)')
     parser.add_argument('-d', metavar ='[http(s)://direccion del escaneo]', required=True, nargs=1, help="URL o IP de objetivo a escanear. Este parametro siempre es requerido.")
     parser.add_argument('--full', action="store_true", help="Lista modulos vulnerables instalados en el objetivo, esto basado en vulnerabilidades conocidas, tarda mas tiempo.")
@@ -67,7 +67,7 @@ if __name__=="__main__":
         if arguments.full:
           listar.full_scan(req,arguments.d[0],arguments.verbose,reporte)
         if arguments.s:
-          script = "/opt/drustroyer/script/"
+          script = "/opt/druspawn/script/"
           sys.argv = [script+arguments.s[0], req, arguments.d[0]]
           retorno = dict()
           execfile(script+arguments.s[0], dict(), retorno)
@@ -76,7 +76,7 @@ if __name__=="__main__":
       if arguments.s:
         reporte = report.create(arguments.d[0],time.asctime(time.localtime(time.time())),getpass.getuser(),vars(arguments),req.get('http://ipecho.net/plain').text,useragent[:-1])
         print colors.green('[**] ')+"Ejecutando unicamente script %s sobre %s"%(arguments.s[0],arguments.d[0])
-        script = "/opt/drustroyer/script/"
+        script = "/opt/druspawn/script/"
         sys.argv = [script+arguments.s[0], req, arguments.d[0]]
         retorno = dict()
         execfile(script+arguments.s[0], dict(), retorno)

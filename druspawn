@@ -10,4 +10,4 @@
 #	es un buen cliche...	#
 #***************************#
 
-python /opt/drustroyer/DropAllScan.py $*
+python /opt/druspawn/DruSpawn.py $*

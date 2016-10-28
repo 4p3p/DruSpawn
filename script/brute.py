@@ -4,7 +4,7 @@ BRUTE.PY
 
 Autor: FCG.
 
-Este script de python esta optimizado para funcionar con la herramienta Drustroyer.
+Este script de python esta optimizado para funcionar con la herramienta druspawn.
 
 Requiere de dos diccionarios, uno de usuarios y uno de contrasenas. Los cuales deben ser ubicados en el
 directorio de scripts en el punto de instalacion de la herramienta.
@@ -19,8 +19,8 @@ import os
 import re
 import colors
 
-usrlist = [line.rstrip('\n') for line in open('/opt/drustroyer/script/dependencias/usuarios.txt')]
-pswlist = [line.rstrip('\n') for line in open('/opt/drustroyer/script/dependencias/passwords.txt')]
+usrlist = [line.rstrip('\n') for line in open('/opt/druspawn/script/dependencias/usuarios.txt')]
+pswlist = [line.rstrip('\n') for line in open('/opt/druspawn/script/dependencias/passwords.txt')]
 
 req,target = sys.argv[1],sys.argv[2]
 if req.get(target+'/user/login').status_code == 200 and 'password' in req.get(target+'/user/login').text:

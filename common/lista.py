@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 __author__="Fernando Castaneda G."
 __copyright__="Copyright 2016, UNAM-CERT"
-__license__="GPL"
-__version__="0.1"
+__license__="UNAM CERT"
+__version__="1.0"
 __status__="Prototype"
 
 import requests
@@ -30,7 +30,7 @@ def tema(req, target, verbose, archivo, lista, vuln):
 		theme = re.findall(pattern,html)
 		if theme:
 			pwd = os.getcwd()
-			c = sqlite3.connect('/opt/drustroyer/config/generadores/drupal_vuln.db')
+			c = sqlite3.connect('/opt/druspawn/config/generadores/drupal_vuln.db')
 			con = c.cursor()
 			respuesta = con.execute("Select v.id_vuln,v.fecha,v.nivel,v.tipo,v.url from vulnerabilidades as v where v.id_proyecto='%s' COLLATE NOCASE"%theme[0].replace('_',' ').title()).fetchall()
 			print colors.green('[*] ')+"Tema instalado:\n\t %s\n\n"%theme[0] if verbose else '',
@@ -54,7 +54,7 @@ def tema(req, target, verbose, archivo, lista, vuln):
 
 def mod_pagina(req, target, verbose, archivo, lista, vuln):
 	pwd = os.getcwd()
-	c = sqlite3.connect('/opt/drustroyer/config/generadores/drupal_vuln.db')
+	c = sqlite3.connect('/opt/druspawn/config/generadores/drupal_vuln.db')
 	con = c.cursor()
 	html = req.get(target).text
 	lines = html.split('\n')
@@ -132,7 +132,7 @@ def full_scan(req, target, verbose, reporte):
 		lista = []
 		vulnes = []
 		pwd = os.getcwd()
-		c = sqlite3.connect('/opt/drustroyer/config/generadores/drupal_vuln.db')
+		c = sqlite3.connect('/opt/druspawn/config/generadores/drupal_vuln.db')
 		con = c.cursor()
 		print colors.green('[***] ')+"Full Scan habilitado, esto puede demorar varios minutos..."
 		lista.append('<strong>FULL SCAN HABILITADO</strong><br/>')

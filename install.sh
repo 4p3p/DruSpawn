@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #***************************#
-#	DRUSTROYER INSTALLER	#
+#	druspawn INSTALLER	#
 #							#
 #	Fernando C.G.			#
 #							#
@@ -20,29 +20,32 @@ instalador () {
 	sudo pip install bs4
 	sudo chmod 777 ./*
 	echo "CREANDO DIRECTORIO /opt/drustoyer"
-	sudo mkdir -pm 777 /opt/drustroyer
+	sudo mkdir -pm 777 /opt/druspawn
 	echo "CREANDO DIRECTORIO PARA USUARIO..."
-	sudo mkdir -pm 777 ~/.drustroyer/*
-	echo "Moviendo archivos necesarios a /opt/drustroyer"
-	sudo cp -rf ./* /opt/drustroyer
-	sudo cp ./drustroyer /bin/
-	sudo chmod 777 /bin/drustroyer
-	cd /opt/drustroyer/config/generadores
+	sudo mkdir -pm 777 ~/.druspawn/
+	sudo mkdir -pm 777 ~/.druspawn/logs
+	sudo mkdir -pm 777 ~/.druspawn/reportes
+	echo "Moviendo archivos necesarios a /opt/druspawn"
+	sudo cp -rf ./* /opt/druspawn
+	sudo cp ./druspawn /bin/
+	sudo chmod 777 /bin/druspawn
+	cd /opt/druspawn/config/generadores
 	echo "¿Desea utilizar la base de datos que viene con el programa, o desea crear una propia?[ Ingrese S para crearla, cualquier otro caracter para utilizar la base de datos por defecto. ]"
 	read valor
 	if [ $valor = 'S' ] || [ $valor = 's' ];
 	then
-		cd /opt/drustroyer/config/generadores
+		cd /opt/druspawn/config/generadores
 		rm -rf drupal_vuln.db
 		echo "CREANDO LA BASE DE DATOS, ESTO PUEDE TOMAR MUCHO TIEMPO, PUEDE IN POR UN CAFE :)"
 		sudo sqlite3 drupal_vuln.db < drupal_vuln.sql
 		sudo python fill_db.py
 	else
-		cd /opt/drustroyer/config/generadores
+		cd /opt/druspawn/config/generadores
 	fi
+	echo "\nINSTALACION FINALIZADA, DISFRUTE :)"
 }
 
-if [ -d /opt/drustroyer ];
+if [ -d /opt/druspawn ];
 then
 	echo "Ya se encuentra instalado en el equipo"
 else
