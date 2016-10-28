@@ -22,9 +22,7 @@ instalador () {
 	echo "CREANDO DIRECTORIO /opt/drustoyer"
 	sudo mkdir -pm 777 /opt/drustroyer
 	echo "CREANDO DIRECTORIO PARA USUARIO..."
-	sudo mkdir -pm 777 ~/.drustroyer
-	sudo mkdir -pm 777 ~/.drustroyer/logs
-	sudo mkdir -pm 777 ~/.drustroyer/reportes
+	sudo mkdir -pm 777 ~/.drustroyer/*
 	echo "Moviendo archivos necesarios a /opt/drustroyer"
 	sudo cp -rf ./* /opt/drustroyer
 	sudo cp ./drustroyer /bin/

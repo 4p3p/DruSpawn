@@ -24,10 +24,16 @@ def create(target,tiempo,usuario,args,ip,user_agent):
 		titulo = str(target.replace('https://','').replace('/','')+datetime.datetime.now().strftime("%a%d%s"))
 	else:
 		titulo = str(target.replace('http://','').replace('/','')+datetime.datetime.now().strftime("%a%d%s"))
-	ubicacion = '/home/'+getpass.getuser()+'/.drustroyer/reportes/'+ titulo
+	if 'root' in getpass.getuser():
+		ubicacion = '/'+getpass.getuser()+'/.drustroyer/reportes/'+ titulo
+	else
+		ubicacion = '/home/'+getpass.getuser()+'/.drustroyer/reportes/'+ titulo
 	if not os.path.exists(ubicacion):
 		os.makedirs(ubicacion)
-	os.system('sudo cp -rf /opt/drustroyer/reportes/dependencias/ ''/home/'+getpass.getuser()+'/.drustroyer/reportes/'+titulo+'/')
+	if 'root' in getpass.getuser():
+		os.system('sudo cp -rf /opt/drustroyer/reportes/dependencias/ /'+getpass.getuser()+'/.drustroyer/reportes/'+titulo+'/')
+	else
+		os.system('sudo cp -rf /opt/drustroyer/reportes/dependencias/ /home/'+getpass.getuser()+'/.drustroyer/reportes/'+titulo+'/')	
 	reporte = open(ubicacion+'/'+titulo,'a')
 	reporte.write('''
 <html>

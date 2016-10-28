@@ -19,7 +19,10 @@ import subprocess
 
 if __name__=="__main__":
     tiempo = time.time()
-    log = open('/home/'+getpass.getuser()+'/.drustroyer/logs/exec.log','a')
+    if 'root' in getpass.getuser():
+      log = open('/'+getpass.getuser()+'/.drustroyer/logs/exec.log','a')
+    else:
+      log = open('/home/'+getpass.getuser()+'/.drustroyer/logs/exec.log','a')
     parser = argparse.ArgumentParser(description='Scanner para DRUPAL, funciona con las versiones 6, 7 y 8 del CMS favorito del mundo ;)')
     parser.add_argument('-d', metavar ='[http(s)://direccion del escaneo]', required=True, nargs=1, help="URL o IP de objetivo a escanear. Este parametro siempre es requerido.")
     parser.add_argument('--full', action="store_true", help="Lista modulos vulnerables instalados en el objetivo, esto basado en vulnerabilidades conocidas, tarda mas tiempo.")
