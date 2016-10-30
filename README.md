@@ -5,7 +5,7 @@ Scanner de vulnerabilidades para el CMS favorito del mundo, desarrollado por FCG
 
 ###Para instalar(En distribuciones de GNU/Linux):
 ```
-git clone https://github.com/f99942/DropAll-Scan
+git clone https://github.com/f99942/DruSpawn
 cd  DropAll-Scan
 sudo ./install
 ```
