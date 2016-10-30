@@ -22,9 +22,12 @@ instalador () {
 	echo "CREANDO DIRECTORIO /opt/drustoyer"
 	sudo mkdir -pm 777 /opt/druspawn
 	echo "CREANDO DIRECTORIO PARA USUARIO..."
-	sudo mkdir -pm 777 ~/.druspawn/
-	sudo mkdir -pm 777 ~/.druspawn/logs
-	sudo mkdir -pm 777 ~/.druspawn/reportes
+	for dir in /home/*/
+	do
+		mkdir -pm 777 $dir/.druspawn/
+		mkdir -pm 777 $dir/.druspawn/logs
+		mkdir -pm 777 $dir/.druspawn/reportes
+	done
 	echo "Moviendo archivos necesarios a /opt/druspawn"
 	sudo cp -rf ./* /opt/druspawn
 	sudo cp ./druspawn /bin/

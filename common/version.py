@@ -99,8 +99,7 @@ def version_exacta8(req, target, version, verbose,reporte,archivo):
 def versiones_posibles(req, target, verbose, reporte, archivo):
 	try:
 		posibles = []
-		actual = os.getcwd()
-		versiones = untangle.parse(actual+'/config/versions.xml')
+		versiones = untangle.parse('/opt/druspawn/config/versions.xml')
 		js = ['/misc/drupal.js','/core/misc/drupal.js']
 		if req.get(target+js[0]).status_code is 200:
 			hash = hashlib.md5(req.get(target+js[0]).text).hexdigest()
@@ -149,13 +148,13 @@ def versiones_posibles(req, target, verbose, reporte, archivo):
 			reporte.append("</ul>")	
 			actualizado(req,posibles[-1],verbose, reporte, archivo)	
 	except Exception as e:
-		print e
+		#print e
 		print colors.red('[*] ')+"No se pudo obtener la version especifica" if verbose else '',
 		reporte.append("</ul>")
 
 def actualizado(req,version,verbose, reporte, archivo):
 	try:
-		print version
+		#print version
 		if '8' in str(version):
 			pattern = re.compile('Drupal core (8\.\d\.\d)')
 			ultima = re.findall(pattern,req.get('https://www.drupal.org/project/drupal').text)

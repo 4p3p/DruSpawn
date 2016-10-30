@@ -46,8 +46,7 @@ def contrib(con):
   con.commit()
 
 def core(con):
-  actual = os.getcwd()
-  versiones = untangle.parse(actual+'/../versions.xml')
+  versiones = untangle.parse('/opt/druspawn/config/versions.xml')
   for i in range(0,2):
     for v in range(1,len(versiones.root.child[i].version)):
       con.execute('insert or ignore into core values(?,?)',(versiones.root.child[i].version[v]['nb'],versiones.root.child[i].version[v]['md5']))
@@ -143,8 +142,7 @@ def vulns(con):
       pass
 
 if __name__=="__main__": 
-  pwd = os.getcwd()
-  c = sqlite3.connect(pwd+'/drupal_vuln.db')
+  c = sqlite3.connect('/opt/druspawn/config/generadores/drupal_vuln.db')
   con = c.cursor()
   contrib(c)
   core(c)
