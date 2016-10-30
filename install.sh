@@ -1,13 +1,13 @@
 #!/bin/sh
 
 #***************************#
-#	druspawn INSTALLER	#
-#							#
-#	Fernando C.G.			#
-#							#
-#	Este cuadro no dice		#
-#	nada importante, pero	#
-#	es un buen cliche...	#
+#	druspawn INSTALLER  #
+#			    #
+#	Fernando C.G.	    #
+#			    #
+#     Este cuadro no dice   #
+#    nada importante, pero  #
+#     es un buen cliche...  #
 #***************************#
 
 instalador () {
@@ -19,15 +19,20 @@ instalador () {
 	sudo pip install BeautifulSoup 
 	sudo pip install bs4
 	sudo chmod 777 ./*
-	echo "CREANDO DIRECTORIO /opt/drustoyer"
+	echo "CREANDO DIRECTORIO /opt/druspawn"
 	sudo mkdir -pm 777 /opt/druspawn
 	echo "CREANDO DIRECTORIO PARA USUARIO..."
 	for dir in /home/*/
 	do
-		mkdir -pm 777 $dir/.druspawn/
-		mkdir -pm 777 $dir/.druspawn/logs
-		mkdir -pm 777 $dir/.druspawn/reportes
+		mkdir -pm 777 $dir.druspawn/
+		echo "Creando $dir.druspawn/"
+		mkdir -pm 777 $dir.druspawn/logs
+		echo "Creando $dir.druspawn/logs"
+		mkdir -pm 777 $dir.druspawn/reportes
+		echo "Creando $dir.druspawn/reportes"
 	done
+	echo "Instalando directorios en /root/ para superusuario..."
+	sudo mkdir -pm 777 /root/.druspawn/logs /root/.druspawn/reportes	
 	echo "Moviendo archivos necesarios a /opt/druspawn"
 	sudo cp -rf ./* /opt/druspawn
 	sudo cp ./druspawn /bin/
