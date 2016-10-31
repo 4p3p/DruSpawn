@@ -6,13 +6,13 @@ Scanner de vulnerabilidades para el CMS favorito del mundo, desarrollado por FCG
 ###Para instalar(En distribuciones de GNU/Linux):
 ```
 git clone https://github.com/f99942/DruSpawn
-cd  DropAll-Scan
-sudo ./install
+cd  DruSpawn
+./install.sh
 ```
 
 ###Método de empleo:
 ```
-sudo druspawn -d drupal.to.check --verbose
+druspawn -d drupal.to.check --verbose
 ```
 #####Ejemplo de salida:
 ```

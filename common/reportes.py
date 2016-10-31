@@ -107,7 +107,7 @@ def listado(reporte,lista):
 def vuln(reporte,listalista):
 	reporte.write('''
 				<div id="main">
-					<h1>VULNERABILIDADES POSIBLES PARA SECCION.</h1>
+					<h1>POSIBLES VULNERABILIDADES.</h1>
 					<table>
 					<tr>
 						<th class="first"><strong>ID</strong> vulnerabilidad</th>

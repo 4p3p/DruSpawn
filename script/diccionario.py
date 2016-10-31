@@ -1,6 +1,6 @@
 #!/usr/bin/python
 '''
-BRUTE.PY
+DICCIONARIO.PY
 
 Autor: FCG.
 
@@ -47,9 +47,9 @@ for user in usrlist:
 		except Exception as e:
 			print e
 if ValidCredentials:
-	retorno = 'Credenciales validas halladas\n'
+	retorno = 'Credenciales validas halladas<br/>'
 	for d in ValidCredentials:
 		print "Credenciales validas halladas: "+d[0]+" "+d[1];
-		retorno += "USER: "+d[0]+" PASS:"+d[1]+'\n'
+		retorno += "USER: "+d[0]+" PASS:"+d[1]+'<br/>'
 elif not ValidCredentials:
 	retorno = 'NO SE HALLARON CREDENCIALES VALIDAS.'

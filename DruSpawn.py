@@ -17,6 +17,11 @@ import time
 import getpass
 import subprocess
 
+'''
+Archivo principal de DruSpawn, recibe los parametros y realiza las llamadas a los modulos en base a dichos parametros.
+'''
+
+
 if __name__=="__main__":
     tiempo = time.time()
     if 'root' in getpass.getuser():
