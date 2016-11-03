@@ -138,10 +138,11 @@ def full_scan(req, target, verbose, reporte):
 		lista.append('<strong>FULL SCAN HABILITADO</strong><br/>')
 		murls = ['%s/sites/all/modules/%s/','%s/sites/all/modules/%s/README.txt','%s/sites/all/modules/%s/LICENSE.txt','%s/modules/%s/','%s/modules/%s/README.txt','%s/modules/%s/LICENSE.txt']
 		turls = ['%s/sites/all/themes/%s/','%s/sites/all/themes/%s/README.txt','%s/sites/all/themes/%s/LICENSE.txt','%s/themes/%s/','%s/themes/%s/README.txt','%s/themes/%s/LICENSE.txt']
-		modulos = [line.rstrip() for line in file(os.getcwd()+"/config/modulos.dat").readlines()]
-		temas = [line.rstrip() for line in file(os.getcwd()+"/config/temas.dat").readlines()]
+		modulos = [line.rstrip() for line in file("/opt/druspawn/config/modulos.dat").readlines()]
+		temas = [line.rstrip() for line in file("/opt/druspawn/config/temas.dat").readlines()]
 		encontrado = []
 		tmp = con.execute("Select id_proyecto,id_vuln from vulnerabilidades").fetchall()
+		c = 0
 		for tema in tmp:
 			for url in turls:
 				if req.get(url%(target,tema[0].replace(' ','_').lower())).status_code in [200,403] and tema[0].replace(' ','_').lower() not in ['',' ','   ']:
@@ -149,25 +150,31 @@ def full_scan(req, target, verbose, reporte):
 						encontrado.append(tema[0].replace(' ','_').lower())
 						encontrado.append(req.get(url%(target,tema[0].replace(' ','_').lower())).status_code)
 					encontrado.append(url%(target,tema[0].replace(' ','_').lower()))
+			if c == 600:
+				break
+			c += 1
 		if encontrado:
-			print colors.green('\n[**] ')+"TEMAS O MODULOS ENCONTRADOS CON VULNERABILIDADES: "
-			lista.append('<strong>TEMAS O MODULOS CON VULNERABILIDADES. </strong><br/>')
+			print colors.green('\n[**] ')+"TEMAS O MODULOS ENCONTRADOS: "
+			lista.append('<strong>TEMAS O MODULOS ENCONTRADOS. </strong><br/>')
 			lista. append('<ul>')
 			for m in encontrado:
 				if 'http' in str(m):
-					print '\t\t %s'%m
-					lista.append('<li>%s<li>'%m)
+					print '\t\t %s\n'%m if verbose else '',
+					lista.append('<strong>Recurso:</strong><a href="%s">%s</a><br/>'%(m,m))
 				else:
-					print colors.blue('[**] ')+' %s'%m
-					lista.append('<li>%s<li>'%m)
-					if m not in [200,403]:
-						cve = con.execute("select cve.id_cve from cve,vulnerabilidades where vulnerabilidades.id_proyecto like '%s'"%m).fetchone()
-						print '\t '+cve[0]
+					print colors.blue('[**] ')+' %s\n'%m if verbose and m not in [200,403] else '',
+					if m not in [200,403] and not m in ['',' ','  ',None]:
+						lista.append('<li>%s<li>'%m)
+						respuesta = con.execute("Select v.id_vuln,v.id_proyecto,v.fecha,v.nivel,v.tipo,v.url from vulnerabilidades as v where v.id_proyecto='%s' COLLATE NOCASE"%m.replace('_',' ').title()).fetchall()
+						cves = con.execute("Select id_cve,url from cve where id_vuln='%s'"%respuesta[0][0]).fetchall()
+						#print '\t '+cves[0]
+						vulnes.append([respuesta,cves])
 			lista.append('</ul>')
 			con.close()
 		else:
 			print colors.green('\n\t')+"No se encontraron temas... "
 		encontrado = []
 		reportes.full(reporte,lista)
+		reportes.vuln(reporte,vulnes)
 	except Exception as e:
 		print e

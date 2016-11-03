@@ -45,8 +45,11 @@ instalador () {
 		cd /opt/druspawn/config/generadores
 		rm -rf drupal_vuln.db
 		echo "CREANDO LA BASE DE DATOS, ESTO PUEDE TOMAR MUCHO TIEMPO, PUEDE IN POR UN CAFE :)"
+		sudo rm -f drupal_vuln.db
+		sudo rm -f drupal_vuln
 		sudo sqlite3 drupal_vuln.db < drupal_vuln.sql
 		sudo python fill_db.py
+		sudo python crear_diccionarios.py
 	else
 		cd /opt/druspawn/config/generadores
 	fi

@@ -32,7 +32,7 @@ if __name__=="__main__":
     parser.add_argument('-d', metavar ='[http(s)://direccion del escaneo]', required=True, nargs=1, help="URL o IP de objetivo a escanear. Este parametro siempre es requerido.")
     parser.add_argument('--full', action="store_true", help="Lista modulos vulnerables instalados en el objetivo, esto basado en vulnerabilidades conocidas, tarda mas tiempo.")
     parser.add_argument('-p', metavar='[http://direccion del proxy]', nargs=1,help="Emplea un proxy(http)")
-    parser.add_argument('--pdf',action='store_true',help="Genera un reporte en formato PDF a partir de el HTML generado")
+    #parser.add_argument('--pdf',action='store_true',help="Genera un reporte en formato PDF a partir de el HTML generado")
     parser.add_argument('-u', metavar='[Archivo con user agent]', nargs=1, help="Se especifica un user-agent a traves de un archivo")
     parser.add_argument('-s', metavar='[script.py]' ,nargs=1,help="Utiliza un script tuyo, sigue el modelo!!!")
     parser.add_argument('--script',action="store_true",help="Ejecuta solamente el script, ignora los escaneos.")

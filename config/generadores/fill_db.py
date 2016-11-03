@@ -136,8 +136,9 @@ def vulns(con):
                   if cve:
                     for e in cve:
                       con.execute('insert or ignore into cve values(?,?,?)',(e,id_vuln[0],"https://cve.mitre.org/cgi-bin/cvename.cgi?name="+e))
-                      print "Insertando %s %s %s en cve"%(e,id_vuln[0],"https://cve.mitre.org/cgi-bin/cvename.cgi?name="+e)
+                      print "Insertando %s %s %s en cve"%(e,id_vuln[0],"https://web.nvd.nist.gov/view/vuln/detail?vulnId="+e)
                       con.commit()
+                  cve = []
     except:
       pass
 

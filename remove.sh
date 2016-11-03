@@ -19,10 +19,10 @@ sudo rm -rf /root/.drustroyer
 sudo rm -rf /bin/drustroyer
 
 sudo rm -rf /opt/druspawn
-for dir in /home/*/
-do
-	sudo rm -rf $dir.druspawn
-done
+#for dir in /home/*/
+#do
+#	sudo rm -rf $dir.druspawn
+#done
 sudo rm -rf /root/.druspawn
 sudo rm -rf /bin/druspawn
 

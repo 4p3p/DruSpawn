@@ -89,10 +89,11 @@ def version_exacta8(req, target, version, verbose,reporte,archivo):
 		if version_x:
 			print colors.green('[*] ')+"Version expecifica: %s\n"%version_x[0] if verbose else '',
 			reporte.append("Version expecifica: %s<br/>"%version_x[0])
-			actualizado(req,version_x[0],verbose)
+			actualizado(req,version_x[0],verbose,reporte,archivo)
 			return True
 		versiones_posibles(req)
-	except:
+	except Exception as e:
+		print e
 		print colors.red('[*] ')+"No se pudo obtener la version especifica\n" if verbose else '',
 		reporte.append("No se pudo obtener la version especifica<br/>")
 
