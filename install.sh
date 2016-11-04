@@ -24,15 +24,25 @@ instalador () {
 	echo "CREANDO DIRECTORIO PARA USUARIO..."
 	for dir in /home/*/
 	do
-		mkdir -pm 777 $dir.druspawn/
-		echo "Creando $dir.druspawn/"
-		mkdir -pm 777 $dir.druspawn/logs
-		echo "Creando $dir.druspawn/logs"
-		mkdir -pm 777 $dir.druspawn/reportes
-		echo "Creando $dir.druspawn/reportes"
+		if [ -d $dir.druspawn ];
+		then
+			echo "Se mantendran directorios en $dir de instalacion previa..."
+		else
+			mkdir -pm 777 $dir.druspawn/
+			echo "Creando $dir.druspawn/"
+			mkdir -pm 777 $dir.druspawn/logs
+			echo "Creando $dir.druspawn/logs"
+			mkdir -pm 777 $dir.druspawn/reportes
+			echo "Creando $dir.druspawn/reportes"
+		fi
 	done
-	echo "Instalando directorios en /root/ para superusuario..."
-	sudo mkdir -pm 777 /root/.druspawn/logs /root/.druspawn/reportes	
+	if [ -d /root/.druspawn ];
+		then
+			echo "Se mantendran directorios en /root/.druspawn de instalacion previa..."
+		else
+			echo "Instalando directorios en /root/ para superusuario..."
+			sudo mkdir -pm 777 /root/.druspawn/logs /root/.druspawn/reportes
+		fi	
 	echo "Moviendo archivos necesarios a /opt/druspawn"
 	sudo cp -rf ./* /opt/druspawn
 	sudo cp ./druspawn /bin/

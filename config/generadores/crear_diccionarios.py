@@ -13,11 +13,11 @@ from BeautifulSoup import BeautifulSoup
 
 def diccionarios(tipo):
   if tipo == 1:
-    f = open(os.getcwd()+"/../temas.dat",'w')
+    f = open("/opt/druspawn/config/temas.dat",'w')
     burl = "https://www.drupal.org/project/project_theme?page=%d"
     resource = "themes"
   elif tipo == 2:
-    f = open(os.getcwd()+"/../modulos.dat",'w')
+    f = open("/opt/druspawn/config/modulos.dat",'w')
     burl = "https://www.drupal.org/project/project_module?page=%d"
     resource = "modules"
   i=0
