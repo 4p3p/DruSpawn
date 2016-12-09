@@ -33,7 +33,7 @@ def tema(req, target, verbose, archivo, lista, vuln):
 			c = sqlite3.connect('/opt/druspawn/config/generadores/drupal_vuln.db')
 			con = c.cursor()
 			respuesta = con.execute("Select v.id_vuln,v.fecha,v.nivel,v.tipo,v.url from vulnerabilidades as v where v.id_proyecto='%s' COLLATE NOCASE"%theme[0].replace('_',' ').title()).fetchall()
-			print colors.green('[*] ')+"Tema instalado:\n\t %s\n\n"%theme[0] if verbose else '',
+			print colors.green('\n[*] ')+"Tema instalado:\n\t %s\n\n"%theme[0] if verbose else '',
 			lista.append("<strong>Tema instalado:<strong> %s<br/>"%theme[0])
 			if respuesta:
 				for a in respuesta:

@@ -34,7 +34,7 @@ def create(target,tiempo,usuario,args,ip,user_agent):
 		os.system('sudo cp -rf /opt/druspawn/reportes/dependencias/ /'+getpass.getuser()+'/.druspawn/reportes/'+titulo+'/')
 	else:
 		os.system('sudo cp -rf /opt/druspawn/reportes/dependencias/ /home/'+getpass.getuser()+'/.druspawn/reportes/'+titulo+'/')
-	reporte = open(ubicacion+'/'+titulo,'a')
+	reporte = open(ubicacion+'/'+titulo+'.html','a')
 	reporte.write('''
 <html>
 <head>
@@ -115,38 +115,39 @@ def vuln(reporte,listalista):
 						<th>CVEs</th>
 					</tr>
 				''')
-	cves = ''
-	for i in range(0,len(listalista)-1):
-		if listalista[i][1]:
-			for j in range(0,len(listalista[i])-1):
-				for k in range(0,len(listalista[j])-1):
-					cves += '<strong><a href="'+str(listalista[i][1][k][1])+'">'+str(listalista[i][1][k][0])+"</a></strong><br/> "
 	flag = True
 	for i in range(0,len(listalista)):
 		for j in range(0,len(listalista[i])-1):
-			for k in range(0,len(listalista[j])-1):
-				if flag:
-					reporte.write('''
-					<tr class="row-a">
-					''')
-					flag = False
-				else:
-					reporte.write('''
-					<tr class="row-b">
-					''')
-					flag = True
+			#for k in range(0,len(listalista[j])-1):
+			if flag:
 				reporte.write('''
-						<td class="first"><a href='%s'>%s</a></td>
-						<td>
-						<strong>PROYECTO:</strong></br><p>%s</p>
-						<strong>FECHA:</strong></br><p>%s</p>
-						<strong>NIVEL:</strong></br><p>%s</p>
-						<strong>TIPO:</strong></br><p>%s</p>
-						</td>
-						<td>%s</td>
-					</tr>
-					'''%(listalista[i][0][j][5],listalista[i][0][j][0],listalista[i][0][j][1],listalista[i][0][j][2],listalista[i][0][j][3],listalista[i][0][j][4],cves))
+				<tr class="row-a">
+				''')
+				flag = False
+			else:
+				reporte.write('''
+				<tr class="row-b">
+				''')
+				flag = True
+			reporte.write('''
+					<td class="first"><a href='%s'>%s</a></td>
+					<td>
+					<strong>PROYECTO:</strong></br><p>%s</p>
+					<strong>FECHA:</strong></br><p>%s</p>
+					<strong>NIVEL:</strong></br><p>%s</p>
+					<strong>TIPO:</strong></br><p>%s</p>
+					</td>
+					<td>
+					'''%(listalista[i][0][j][5],listalista[i][0][j][0],listalista[i][0][j][1],listalista[i][0][j][2],listalista[i][0][j][3],listalista[i][0][j][4]))
+			for l in range(0,len(listalista[i][1])-1):
+				reporte.write('''
+							<strong><a href="%s">%s</a></strong>
+					'''%(str(listalista[i][1][l][1]),str(listalista[i][1][l][0])))
+			reporte.write('''
+					</td>
+				''')
 	reporte.write('''
+						</tr>
 					</tr>
 		      </table>
 		    </div>

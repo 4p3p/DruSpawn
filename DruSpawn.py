@@ -90,6 +90,7 @@ if __name__=="__main__":
         print colors.red('[**] ')+"Debes seleccionar un script para usar la opcion --script"
 
     if reporte:
+      print colors.blue('\b\n[***]')+"Reporte generado en: \n %s\n"%(reporte.name)
       report.finalizar(reporte)
     #if arguments.pdf:
     #  report.pdf()

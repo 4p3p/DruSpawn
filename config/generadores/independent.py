@@ -6,6 +6,12 @@ __license__="UNAM CERT"
 __version__="1.0"
 __status__="Prototype"
 
+#
+#Este script sirve para generar una base de datos por defecto para la herramienta
+#Es independiente del script que se ejecuta con la instalacion de la misma
+#
+
+
 import requests
 import sys
 import os
@@ -46,7 +52,7 @@ def contrib(con):
   con.commit()
 
 def core(con):
-  versiones = untangle.parse('/opt/druspawn/config/versions.xml')
+  versiones = untangle.parse('../versions.xml')
   for i in range(0,2):
     for v in range(1,len(versiones.root.child[i].version)):
       con.execute('insert or ignore into core values(?,?)',(versiones.root.child[i].version[v]['nb'],versiones.root.child[i].version[v]['md5']))
@@ -147,9 +153,10 @@ def iter(i, burl,con):
   except Exception as e:
     print e
     pass
+    
 
 if __name__=="__main__": 
-  c = sqlite3.connect('/opt/druspawn/config/generadores/drupal_vuln.db')
+  c = sqlite3.connect('drupal_vuln.db')
   con = c.cursor()
   contrib(c)
   core(c)

@@ -75,8 +75,8 @@ def version_exacta67(req, target, version, verbose, reporte, archivo):
 		elif version == 6:
 			return False
 	except:
-		print colors.red('[*] ')+"No se pudo obtener la version especifica\n"	if verbose else '',
-		reporte.append("No se pudo obtener la version especifica<br/>")
+		print colors.red('[*] ')+"No se pudo obtener la version del core\n"	if verbose else '',
+		reporte.append("No se pudo obtener la version del core<br/>")
 
 
 def version_exacta8(req, target, version, verbose,reporte,archivo):
@@ -94,8 +94,8 @@ def version_exacta8(req, target, version, verbose,reporte,archivo):
 		versiones_posibles(req)
 	except Exception as e:
 		print e
-		print colors.red('[*] ')+"No se pudo obtener la version especifica\n" if verbose else '',
-		reporte.append("No se pudo obtener la version especifica<br/>")
+		print colors.red('[*] ')+"No se pudo obtener la version del core\n" if verbose else '',
+		reporte.append("No se pudo obtener la version del core<br/>")
 
 def versiones_posibles(req, target, verbose, reporte, archivo):
 	try:
@@ -113,8 +113,8 @@ def versiones_posibles(req, target, verbose, reporte, archivo):
 				v = version_exacta67(req,target,6, verbose,reporte, archivo)
 				if v is False:
 					if posibles:
-						print colors.blue('[***] ')+"Versiones posibles: \n" if verbose else '',
-						reporte.append("Versiones posibles(Obtenidas del hash de drupal.js): <br/>")
+						print colors.blue('[***] ')+"Posibles versiones: \n" if verbose else '',
+						reporte.append("Posibles versiones(Obtenidas del hash de drupal.js): <br/>")
 						reporte.append("<ul>")
 						u = 0
 						for i in range(1,len(posibles)):
@@ -124,11 +124,11 @@ def versiones_posibles(req, target, verbose, reporte, archivo):
 						reporte.append('</ul>')
 						actualizado(req,posibles[u],verbose, reporte, archivo)
 					else:
-						print colors.blue('[***] ')+"No se pudo obtener la version especifica \n" if verbose else '',
-						reporte.append("No se pudo obtener la version especifica<br/>")
+						print colors.blue('[***] ')+"No se pudo obtener la version del core \n" if verbose else '',
+						reporte.append("No se pudo obtener la version del core<br/>")
 				return
-			print colors.blue('[***] ')+"Versiones posibles: \n" if verbose else '',
-			reporte.append("Versiones posibles(Obtenidas del hash de drupal.js): ")
+			print colors.blue('[***] ')+"Posibles versiones: \n" if verbose else '',
+			reporte.append("Posibles versiones(Obtenidas del hash de drupal.js): ")
 			reporte.append("<ul>")
 			for i in range(1,len(posibles)):
 				print colors.blue('[*] ')+"=> %s \n"%posibles[i] if verbose else '',
@@ -137,12 +137,12 @@ def versiones_posibles(req, target, verbose, reporte, archivo):
 			actualizado(req,posibles[-1],verbose, reporte, archivo)
 		elif req.get(target+js[1]).status_code is 200:
 			hash = hashlib.md5(req.get(target+js[1]).text).hexdigest()
-			reporte.append("Versiones posibles(Obtenidas del hash de drupal.js): ")
+			reporte.append("Posibles versiones(Obtenidas del hash de drupal.js): ")
 			reporte.append("<ul>")
 			for v in range(1,len(versiones.root.child[1].version)):
 				if versiones.root.child[1].version[v]['md5'] == hash:
 					posibles.append(versiones.root.child[1].version[v]['nb'])
-			print colors.blue('[***] ')+"Versiones posibles: \n" if verbose else '',
+			print colors.blue('[***] ')+"Posibles versiones: \n" if verbose else '',
 			for i in range(1,len(posibles)):
 				print colors.blue('[*] ')+"=> %s \n"%posibles[i] if verbose else '',
 				reporte.append("<li> %s </li>"%posibles[i])
@@ -150,7 +150,7 @@ def versiones_posibles(req, target, verbose, reporte, archivo):
 			actualizado(req,posibles[-1],verbose, reporte, archivo)	
 	except Exception as e:
 		#print e
-		print colors.red('[*] ')+"No se pudo obtener la version especifica" if verbose else '',
+		print colors.red('[*] ')+"No se pudo obtener la version del core" if verbose else '',
 		reporte.append("</ul>")
 
 def actualizado(req,version,verbose, reporte, archivo):

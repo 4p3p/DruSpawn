@@ -25,7 +25,7 @@ def session_parameters(tor=False,user_agent='',verbose=False,proxy=''):
 			os.system("sudo service tor restart")
 		elif '0' in p:
 			os.system("sudo service tor start")
-		print colors.green('\b[*] ')+"Utilizando tor como metodo de anonimato..."
+		print colors.green('\b[*] ')+"Utilizando tor..."
 		s = requesocks.Session()
 		s.proxies = {'http':  'socks5://127.0.0.1:9050','https': 'socks5://127.0.0.1:9050'}
 		if user_agent is not '':

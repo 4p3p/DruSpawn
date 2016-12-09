@@ -23,6 +23,8 @@ usrlist = [line.rstrip('\n') for line in open('/opt/druspawn/script/dependencias
 pswlist = [line.rstrip('\n') for line in open('/opt/druspawn/script/dependencias/passwords.txt')]
 
 req,target = sys.argv[1],sys.argv[2]
+if 'http' not in target:
+	target = 'http://'+target
 if req.get(target+'/user/login').status_code == 200 and 'password' in req.get(target+'/user/login').text:
 	print colors.green('\n[=>>] ')+"Se probara en:\n\t %s/user/login\n"%target
 	url = target+'/user/login'
