@@ -13,9 +13,11 @@ import sys
 import sqlite3
 import commands
 import os
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
 
 def session_parameters(tor=False,user_agent='',verbose=False,proxy=''):
-	requests.packages.urllib3.disable_warnings()
+	requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 	if proxy is not '' and tor:
 		print colors.yellow('\b[**] ')+"Debe elegir solo una de las opciones, proxy o tor"
 		sys.exit()
